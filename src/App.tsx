@@ -7,6 +7,7 @@ import IndicatorWeather from './components/IndicatorWeather'
 import TableWeather from './components/TableWeather';
 import ControlWeather from './components/ControlWeather';
 import LineChartWeather from './components/LineChartWeather';
+import Item from './interface/Item';
 
 interface Indicator {
   title?: String;
@@ -15,8 +16,8 @@ interface Indicator {
 }
 
 function App() {
-
   {/* Variable de estado y función de actualización */ }
+  let [items, setItems] = useState<Item[]>([])
   let [indicators, setIndicators] = useState<Indicator[]>([])
   let [owm, setOWM] = useState(localStorage.getItem("openWeatherMap"))
 
@@ -67,6 +68,7 @@ function App() {
       {/* Arreglo para agregar los resultados */ }
 
       let dataToIndicators: Indicator[] = new Array<Indicator>();
+      {/*let dataToItems: Item[] = new Array<Indicator>();*/}
 
       {/* 
             Análisis, extracción y almacenamiento del contenido del XML 

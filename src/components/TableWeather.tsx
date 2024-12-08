@@ -5,6 +5,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Item from '../interface/Item';
+import { useEffect, useState} from 'react';
+
+interface MyProp {
+  itemsIn: Item[];
+}
 
 function createData(
   name: string,
@@ -24,32 +30,37 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-export default function BasicTable() {
+export default function BasicTable(props: MyProp) {
+  const [rows, setRows] = useState<Item[]>([]);
+  useEffect(() => {
+    setRows(props.itemsIn);
+  }, [props]);
+
   return (
     <TableContainer component={Paper}>
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+            <TableCell>Hora de inicio</TableCell>
+            <TableCell align="right">Hora de fin</TableCell>
+            <TableCell align="right">Precipitación</TableCell>
+            <TableCell align="right">Humedad</TableCell>
+            <TableCell align="right">Nubosidad</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {rows.map((row, idx) => (
             <TableRow
-              key={row.name}
+              key={idx}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.name}
+                {row.dateStart}
               </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
+              <TableCell align="right">{row.dateEnd}</TableCell>
+              <TableCell align="right">{row.precipitation}</TableCell>
+              <TableCell align="right">{row.humidity}</TableCell>
+              <TableCell align="right">{row.clouds}</TableCell>
             </TableRow>
           ))}
         </TableBody>

@@ -44,7 +44,6 @@ function App() {
         let delay = hours * 3600000
         let expiringTime = nowTime + delay
 
-
         {/* En el LocalStorage, almacene el texto en la clave openWeatherMap, estampa actual y estampa de tiempo de expiración */ }
         localStorage.setItem("openWeatherMap", savedTextXML)
         localStorage.setItem("expiringTime", expiringTime.toString())
